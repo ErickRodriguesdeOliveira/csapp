@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etSearchAgents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar agent por nome ou raridade"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <ProgressBar
+        android:id="@+id/progressAgents"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvErrorAgents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Erro ao carregar agents."
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:padding="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAgents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

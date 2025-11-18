@@ -16,27 +16,29 @@ class MainActivity : AppCompatActivity() {
         val btnHighlights = findViewById<Button>(R.id.btnHighlights)
         val btnCrates = findViewById<Button>(R.id.btnCrates)
         val btnAgents = findViewById<Button>(R.id.btnAgents)
-        
+
         btnSkins.setOnClickListener {
             val intent = Intent(this, SkinsActivity::class.java)
             startActivity(intent)
         }
 
-        // Os outros ainda só mostram Toast por enquanto
         btnStickers.setOnClickListener {
             Toast.makeText(this, "Abrir lista de Stickers", Toast.LENGTH_SHORT).show()
         }
 
         btnHighlights.setOnClickListener {
-            Toast.makeText(this, "Abrir lista de Highlights", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HighlightsActivity::class.java)
+            startActivity(intent)
         }
 
         btnCrates.setOnClickListener {
-            Toast.makeText(this, "Abrir lista de Crates", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CratesActivity::class.java)
+            startActivity(intent)
         }
 
         btnAgents.setOnClickListener {
-            Toast.makeText(this, "Abrir lista de Agents", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AgentsActivity::class.java)
+            startActivity(intent)
         }
     }
 }
