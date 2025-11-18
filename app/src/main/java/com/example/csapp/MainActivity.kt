@@ -16,8 +16,7 @@ class MainActivity : AppCompatActivity() {
         val btnHighlights = findViewById<Button>(R.id.btnHighlights)
         val btnCrates = findViewById<Button>(R.id.btnCrates)
         val btnAgents = findViewById<Button>(R.id.btnAgents)
-
-        // 👉 AGORA ABRE A TELA DE SKINS
+        
         btnSkins.setOnClickListener {
             val intent = Intent(this, SkinsActivity::class.java)
             startActivity(intent)
