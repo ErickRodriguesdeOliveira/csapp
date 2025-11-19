@@ -12,22 +12,28 @@ class AgentDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agent_detail)
 
-        val img = findViewById<ImageView>(R.id.imgAgentDetail)
-        val tvName = findViewById<TextView>(R.id.tvAgentNameDetail)
-        val tvRarity = findViewById<TextView>(R.id.tvAgentRarityDetail)
-        val tvDesc = findViewById<TextView>(R.id.tvAgentDescDetail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detalhes do Agent"
+
+        val imgAgent = findViewById<ImageView>(R.id.imgAgentDetail)
+        val tvName = findViewById<TextView>(R.id.tvAgentDetailName)
+        val tvRarity = findViewById<TextView>(R.id.tvAgentDetailRarity)
+        val tvDescription = findViewById<TextView>(R.id.tvAgentDetailDescription)
 
         val name = intent.getStringExtra("name") ?: ""
-        val desc = intent.getStringExtra("description") ?: ""
         val rarity = intent.getStringExtra("rarity") ?: ""
+        val description = intent.getStringExtra("description") ?: ""
         val image = intent.getStringExtra("image") ?: ""
 
         tvName.text = name
-        tvRarity.text = if (rarity.isNotBlank()) "Raridade: $rarity" else "Raridade desconhecida"
-        tvDesc.text = if (desc.isNotBlank()) desc else "Sem descrição."
+        tvRarity.text = "Raridade: $rarity"
+        tvDescription.text = description
 
-        img.load(image) {
-            crossfade(true)
-        }
+        imgAgent.load(image)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

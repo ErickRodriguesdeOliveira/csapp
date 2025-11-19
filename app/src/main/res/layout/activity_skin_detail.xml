@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:textColor="#BBBBBB"
             android:textSize="14sp"
-            android:paddingTop="4dp" />
+            android:paddingTop="6dp" />
 
         <TextView
             android:id="@+id/tvSkinDetailRarity"
@@ -42,6 +42,14 @@
             android:textColor="#BBBBBB"
             android:textSize="14sp"
             android:paddingTop="2dp" />
+
+        <TextView
+            android:id="@+id/tvSkinDetailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#8888FF"
+            android:textSize="13sp"
+            android:paddingTop="10dp" />
 
     </LinearLayout>
 </ScrollView>

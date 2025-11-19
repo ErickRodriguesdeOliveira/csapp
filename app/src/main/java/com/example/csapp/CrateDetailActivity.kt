@@ -12,23 +12,31 @@ class CrateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crate_detail)
 
-        val img = findViewById<ImageView>(R.id.imgCrateDetail)
-        val tvName = findViewById<TextView>(R.id.tvCrateNameDetail)
-        val tvInfo = findViewById<TextView>(R.id.tvCrateInfoDetail)
-        val tvDesc = findViewById<TextView>(R.id.tvCrateDescDetail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detalhes da Crate"
+
+        val imgCrate = findViewById<ImageView>(R.id.imgCrateDetail)
+        val tvName = findViewById<TextView>(R.id.tvCrateDetailName)
+        val tvType = findViewById<TextView>(R.id.tvCrateDetailType)
+        val tvDate = findViewById<TextView>(R.id.tvCrateDetailDate)
+        val tvDescription = findViewById<TextView>(R.id.tvCrateDetailDescription)
 
         val name = intent.getStringExtra("name") ?: ""
-        val desc = intent.getStringExtra("description") ?: ""
-        val type = intent.getStringExtra("type") ?: ""
-        val date = intent.getStringExtra("date") ?: ""
+        val type = intent.getStringExtra("type") ?: "Tipo desconhecido"
+        val date = intent.getStringExtra("date") ?: "Sem data"
+        val description = intent.getStringExtra("description") ?: ""
         val image = intent.getStringExtra("image") ?: ""
 
         tvName.text = name
-        tvInfo.text = "Tipo: $type\nPrimeira venda: $date"
-        tvDesc.text = if (desc.isNotBlank()) desc else "Sem descrição."
+        tvType.text = "Tipo: $type"
+        tvDate.text = "Primeira venda: $date"
+        tvDescription.text = description
 
-        img.load(image) {
-            crossfade(true)
-        }
+        imgCrate.load(image)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

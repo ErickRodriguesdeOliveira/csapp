@@ -2,39 +2,46 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#101015">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/imgAgentDetail"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Imagem do agent" />
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="#181822" />
 
         <TextView
-            android:id="@+id/tvAgentNameDetail"
+            android:id="@+id/tvAgentDetailName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp" />
+            android:paddingTop="12dp" />
 
         <TextView
-            android:id="@+id/tvAgentRarityDetail"
+            android:id="@+id/tvAgentDetailRarity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:paddingTop="6dp" />
 
         <TextView
-            android:id="@+id/tvAgentDescDetail"
+            android:id="@+id/tvAgentDetailDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:textColor="#DDDDDD"
+            android:textSize="14sp"
+            android:paddingTop="12dp" />
 
     </LinearLayout>
 </ScrollView>

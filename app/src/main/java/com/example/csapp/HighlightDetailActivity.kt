@@ -3,26 +3,27 @@ package com.example.csapp
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.VideoView
 import android.widget.MediaController
+import android.widget.TextView
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 
 class HighlightDetailActivity : AppCompatActivity() {
 
-    private var currentPosition: Int = 0
     private var videoUrl: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_highlight_detail)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detalhes do Highlight"
+
         val img = findViewById<ImageView>(R.id.imgHighlightDetail)
-        val tvName = findViewById<TextView>(R.id.tvHighlightNameDetail)
-        val tvInfo = findViewById<TextView>(R.id.tvHighlightInfoDetail)
-        val tvDesc = findViewById<TextView>(R.id.tvHighlightDescDetail)
+        val tvName = findViewById<TextView>(R.id.tvHighlightDetailName)
+        val tvInfo = findViewById<TextView>(R.id.tvHighlightDetailInfo)
+        val tvDesc = findViewById<TextView>(R.id.tvHighlightDetailDescription)
         val videoView = findViewById<VideoView>(R.id.videoHighlight)
 
         val name = intent.getStringExtra("name") ?: ""
@@ -36,55 +37,28 @@ class HighlightDetailActivity : AppCompatActivity() {
         val stage = intent.getStringExtra("stage") ?: ""
 
         tvName.text = name
-        tvDesc.text = if (desc.isNotBlank()) desc else "Sem descrição."
         tvInfo.text = "Evento: $event\nTimes: $team0 vs $team1\nMapa: $map\nFase: $stage"
+        tvDesc.text = desc
+        img.load(image)
 
-        img.load(image) {
-            crossfade(true)
-        }
-
-        if (videoUrl.isNotBlank()) {
-            val uri = Uri.parse(videoUrl)
-
-            // Controles de play/pause/seek
+        if (videoUrl.isNotEmpty()) {
             val mediaController = MediaController(this)
             mediaController.setAnchorView(videoView)
+
+            val uri = Uri.parse(videoUrl)
+            videoView.setVideoURI(uri)
             videoView.setMediaController(mediaController)
 
-            videoView.setVideoURI(uri)
-
-            // Opcional: começa a tocar automaticamente quando estiver pronto
-            videoView.setOnPreparedListener { mp ->
-                mp.isLooping = false
+            videoView.setOnPreparedListener {
+                it.isLooping = false
                 videoView.start()
+                mediaController.show()
             }
-
-            // Se der erro na reprodução
-            videoView.setOnErrorListener { _, _, _ ->
-                Toast.makeText(this, "Erro ao reproduzir o vídeo", Toast.LENGTH_SHORT).show()
-                true
-            }
-
-        } else {
-            Toast.makeText(this, "Vídeo não disponível para esse highlight", Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        val videoView = findViewById<VideoView>(R.id.videoHighlight)
-        if (videoView.isPlaying) {
-            currentPosition = videoView.currentPosition
-            videoView.pause()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val videoView = findViewById<VideoView>(R.id.videoHighlight)
-        if (videoUrl.isNotBlank()) {
-            videoView.seekTo(currentPosition)
-            videoView.start()
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

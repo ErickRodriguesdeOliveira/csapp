@@ -19,15 +19,18 @@ class SkinDetailActivity : AppCompatActivity() {
         val tvName = findViewById<TextView>(R.id.tvSkinDetailName)
         val tvWeapon = findViewById<TextView>(R.id.tvSkinDetailWeapon)
         val tvRarity = findViewById<TextView>(R.id.tvSkinDetailRarity)
+        val tvId = findViewById<TextView>(R.id.tvSkinDetailId)
 
+        val id = intent.getStringExtra("id") ?: ""
         val name = intent.getStringExtra("name") ?: ""
         val weapon = intent.getStringExtra("weapon") ?: ""
         val rarity = intent.getStringExtra("rarity") ?: ""
         val image = intent.getStringExtra("image") ?: ""
 
         tvName.text = name
-        tvWeapon.text = weapon
-        tvRarity.text = rarity
+        tvWeapon.text = "Arma: $weapon"
+        tvRarity.text = "Raridade: $rarity"
+        tvId.text = "ID: $id"
 
         imgSkin.load(image)
     }
