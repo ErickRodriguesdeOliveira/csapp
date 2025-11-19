@@ -1,42 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#101015"
+    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Campo de busca -->
+    <!-- Cabeçalho -->
+    <TextView
+        android:id="@+id/tvHighlightsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Highlights"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvHighlightsSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lances em vídeo da CSGO-API"
+        android:textColor="#BBBBBB"
+        android:textSize="13sp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="12dp" />
+
+    <!-- Barra de busca -->
     <EditText
         android:id="@+id/etSearchHighlights"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Buscar highlight por nome, evento ou time"
-        android:imeOptions="actionDone"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_search"
+        android:hint="Buscar highlight por nome, evento ou time..."
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#777777"
+        android:gravity="center_vertical"
         android:singleLine="true"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp" />
+        android:inputType="text" />
 
+    <!-- Loading -->
     <ProgressBar
         android:id="@+id/progressHighlights"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminate="true"
         android:layout_gravity="center_horizontal"
+        android:paddingTop="12dp"
         android:visibility="gone" />
 
+    <!-- Mensagem de erro -->
     <TextView
         android:id="@+id/tvErrorHighlights"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Erro ao carregar highlights."
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="#FF5555"
+        android:textSize="14sp"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
         android:visibility="gone"
-        android:padding="8dp" />
+        android:text="Erro ao carregar highlights." />
 
+    <!-- Lista -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHighlights"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
 
 </LinearLayout>

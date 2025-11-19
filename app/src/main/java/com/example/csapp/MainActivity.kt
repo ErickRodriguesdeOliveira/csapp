@@ -2,41 +2,41 @@ package com.example.csapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.card.MaterialCardView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnSkins = findViewById<Button>(R.id.btnSkins)
-        val btnStickers = findViewById<Button>(R.id.btnStickers)
-        val btnHighlights = findViewById<Button>(R.id.btnHighlights)
-        val btnCrates = findViewById<Button>(R.id.btnCrates)
-        val btnAgents = findViewById<Button>(R.id.btnAgents)
+        val cardSkins = findViewById<MaterialCardView>(R.id.cardSkins)
+        val cardStickers = findViewById<MaterialCardView>(R.id.cardStickers)
+        val cardHighlights = findViewById<MaterialCardView>(R.id.cardHighlights)
+        val cardCrates = findViewById<MaterialCardView>(R.id.cardCrates)
+        val cardAgents = findViewById<MaterialCardView>(R.id.cardAgents)
 
-        btnSkins.setOnClickListener {
+        cardSkins.setOnClickListener {
             val intent = Intent(this, SkinsActivity::class.java)
             startActivity(intent)
         }
 
-        btnStickers.setOnClickListener {
+        cardStickers.setOnClickListener {
             Toast.makeText(this, "Abrir lista de Stickers", Toast.LENGTH_SHORT).show()
         }
 
-        btnHighlights.setOnClickListener {
+        cardHighlights.setOnClickListener {
             val intent = Intent(this, HighlightsActivity::class.java)
             startActivity(intent)
         }
 
-        btnCrates.setOnClickListener {
+        cardCrates.setOnClickListener {
             val intent = Intent(this, CratesActivity::class.java)
             startActivity(intent)
         }
 
-        btnAgents.setOnClickListener {
+        cardAgents.setOnClickListener {
             val intent = Intent(this, AgentsActivity::class.java)
             startActivity(intent)
         }
