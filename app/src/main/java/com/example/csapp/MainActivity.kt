@@ -2,7 +2,6 @@ package com.example.csapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
 
@@ -23,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cardStickers.setOnClickListener {
-            Toast.makeText(this, "Abrir lista de Stickers", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, StickersActivity::class.java)
+            startActivity(intent)
         }
 
         cardHighlights.setOnClickListener {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- PERMISSÃO PARA ACESSAR A INTERNET -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,8 +23,16 @@
 
         <activity android:name=".HighlightDetailActivity" />
 
+        <activity android:name=".StickersActivity" />
+
+        <activity android:name=".StickerDetailActivity" />
+
+        <activity android:name=".SkinDetailActivity" />
+
+
+
         <activity android:name=".HighlightsActivity" />
-        <!-- TELA DE SKINS -->
+
         <activity
             android:name=".SkinsActivity"
             android:exported="false" />

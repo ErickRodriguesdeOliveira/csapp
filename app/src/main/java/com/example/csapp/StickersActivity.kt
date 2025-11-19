@@ -12,91 +12,93 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.csapp.data.CsgoApiService
-import com.example.csapp.data.Skin
+import com.example.csapp.data.Sticker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SkinsActivity : AppCompatActivity() {
+class StickersActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: SkinAdapter
+    private lateinit var adapter: StickerAdapter
     private lateinit var progress: ProgressBar
     private lateinit var tvError: TextView
     private lateinit var etSearch: EditText
 
-    private var allSkins: List<Skin> = emptyList()
+    private var allStickers: List<Sticker> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_skins)
+        setContentView(R.layout.activity_stickers)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Skins"
+        supportActionBar?.title = "Stickers"
 
-        recyclerView = findViewById(R.id.rvSkins)
-        progress = findViewById(R.id.progressSkins)
-        tvError = findViewById(R.id.tvErrorSkins)
-        etSearch = findViewById(R.id.etSearchSkins)
+        recyclerView = findViewById(R.id.rvStickers)
+        progress = findViewById(R.id.progressStickers)
+        tvError = findViewById(R.id.tvErrorStickers)
+        etSearch = findViewById(R.id.etSearchStickers)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = SkinAdapter(emptyList()) { skin ->
-            val intent = Intent(this, SkinDetailActivity::class.java).apply {
-                putExtra("name", skin.name)
-                putExtra("weapon", skin.weapon?.name ?: "")
-                putExtra("rarity", skin.rarity?.name ?: "")
-                putExtra("image", skin.image ?: "")
+        adapter = StickerAdapter(emptyList()) { sticker ->
+            val intent = Intent(this, StickerDetailActivity::class.java).apply {
+                putExtra("name", sticker.name)
+                putExtra("description", sticker.description ?: "")
+                putExtra("image", sticker.image ?: "")
+                putExtra("rarity", sticker.rarity?.name ?: "")
             }
             startActivity(intent)
         }
         recyclerView.adapter = adapter
 
-        carregarSkins()
+        carregarStickers()
 
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filtrarSkins(s?.toString() ?: "")
+                filtrarStickers(s?.toString() ?: "")
             }
             override fun afterTextChanged(s: Editable?) {}
         })
     }
 
-    private fun carregarSkins() {
+    private fun carregarStickers() {
         progress.visibility = View.VISIBLE
         tvError.visibility = View.GONE
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val skins = CsgoApiService.instance.getSkins()
+                val stickers = CsgoApiService.instance.getStickers()
                 withContext(Dispatchers.Main) {
-                    allSkins = skins
-                    adapter.updateData(skins)
+                    allStickers = stickers
+                    adapter.updateData(stickers)
                     progress.visibility = View.GONE
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 withContext(Dispatchers.Main) {
                     progress.visibility = View.GONE
                     tvError.visibility = View.VISIBLE
-                    tvError.text = "Erro ao carregar skins."
+                    tvError.text = "Erro ao carregar stickers."
                 }
             }
         }
     }
 
-    private fun filtrarSkins(texto: String) {
+    private fun filtrarStickers(texto: String) {
         val query = texto.trim().lowercase()
         if (query.isEmpty()) {
-            adapter.updateData(allSkins)
+            adapter.updateData(allStickers)
             return
         }
 
-        val filtradas = allSkins.filter { skin ->
-            val n = skin.name.lowercase()
-            val w = skin.weapon?.name?.lowercase() ?: ""
-            n.contains(query) || w.contains(query)
+        val filtradas = allStickers.filter { s ->
+            val name = s.name.lowercase()
+            val rarity = s.rarity?.name?.lowercase() ?: ""
+            name.contains(query) || rarity.contains(query)
         }
+
         adapter.updateData(filtradas)
     }
 

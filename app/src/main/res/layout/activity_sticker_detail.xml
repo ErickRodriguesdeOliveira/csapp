@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101015">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgStickerDetail"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="#181822" />
+
+        <TextView
+            android:id="@+id/tvStickerDetailName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sticker Name"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvStickerDetailRarity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Raridade: Covert"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvStickerDetailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descrição do sticker..."
+            android:textColor="#DDDDDD"
+            android:textSize="14sp"
+            android:paddingTop="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>
